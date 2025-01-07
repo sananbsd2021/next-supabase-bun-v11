@@ -7,12 +7,11 @@ interface ContactsItem {
   name: string;
   message: string;
   createdAt?: string;
-  updated_at?: string;
 }
 
 // Helper function to validate request body
 function validateContactsItem(body: Partial<ContactsItem>): { valid: boolean; message?: string } {
-  if (typeof body.title !== 'string' || !body.title.trim()) {
+  if (typeof body.email !== 'string' || !body.eamil.trim()) {
     return { valid: false, message: 'Title is required and must be a non-empty string.' };
   }
   return { valid: true };
@@ -32,7 +31,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       const { data: contact, error } = await supabase
         .from('contact')
         .select('*')
-        .order('created_at', { ascending: false })
+        .order('createdAt', { ascending: false })
         .range(start, start + limit - 1);
   
       if (error) {
