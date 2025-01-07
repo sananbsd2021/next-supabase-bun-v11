@@ -3,9 +3,11 @@ import { NextResponse, NextRequest } from 'next/server';
 
 interface ContactsItem {
   id: number;
-  title: string;
-  description: string;
+  email: string;
+  name: string;
+  message: string;
   createdAt?: string;
+  updated_at?: string;
 }
 
 // Helper function to validate request body
